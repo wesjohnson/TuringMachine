@@ -37,24 +37,24 @@ char TransitionFunction::WriteChar(int index) const
     return transitions[index].WriteChar();
 }
 
-bool IsDefinedTransition(string sourceState, char readChar, 
+bool TransitionFunction::IsDefinedTransition(string sourceState, char readChar, 
         string& destinationState, char& writeChar, 
-        Direction& moveDirection) const;
+        Direction& moveDirection) const
 {
-    for (int i = 0, i < transitions.size(), i++)
+    for (int i = 0; i < transitions.size(); i++)
     {
         if ((transitions[i].SourceState() == sourceState) &&
                 (transitions[i].ReadChar() == readChar))
         {
             destinationState = transitions[i].DestinationState();
             writeChar = transitions[i].WriteChar();
-            moveDirection = transitions[i]MoveDirection();
+            moveDirection = transitions[i].Move();
             return true;
         }
     }
     return false;
 }
-bool IsSourceState(string state) const;
+bool TransitionFunction::IsSourceState(string state) const
 {
     return false;
 }

@@ -1,5 +1,5 @@
-#ifndef TAPEALPHABET_H
-#define TAPEALPHABET_H
+#ifndef TAPEALPHABET_HPP
+#define TAPEALPHABET_HPP
 
 
 using namespace std;

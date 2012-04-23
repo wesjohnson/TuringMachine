@@ -1,5 +1,5 @@
-#ifndef TRANSITIONFUNCTION_H
-#define TRANSITIONFUNCTION_H
+#ifndef TRANSITIONFUNCTION_HPP
+#define TRANSITIONFUNCTION_HPP
 
 #include "transition.hpp"
 #include "direction.hpp"

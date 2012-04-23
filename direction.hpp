@@ -1,5 +1,5 @@
-#ifndef DIRECTION_H
-#define DIRECTION_H
+#ifndef DIRECTION_HPP
+#define DIRECTION_HPP
 
 typedef char Direction;
 

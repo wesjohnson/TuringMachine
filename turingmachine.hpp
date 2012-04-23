@@ -1,5 +1,5 @@
-#ifndef TURINGMACHINE_H
-#define TURINGMACHINE_H
+#ifndef TURINGMACHINE_HPP
+#define TURINGMACHINE_HPP
 
 #include "tape.hpp"
 #include "inputalphabet.hpp"
@@ -7,6 +7,7 @@
 #include "tapealphabet.hpp"
 #include "states.hpp"
 #include "finalstates.hpp"
+#include "inputstrings.hpp"
 #include <string>
 #include <vector>
 using namespace std;
@@ -26,12 +27,14 @@ class TuringMachine
         string originalInputString;
         int numberOfTransitions;
         bool valid;
+        bool used;
         bool invalid;
         bool operating;
         bool accepted;
         bool rejected;
 
     public:
+        TuringMachine();
         TuringMachine(string definitionFile);
         void ViewDefinition() const;
         void ViewInstantaneousDescription(int maxNumberOfCells) const;

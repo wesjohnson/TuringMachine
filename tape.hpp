@@ -1,5 +1,5 @@
-#ifndef TAPE_H
-#define TAPE_H
+#ifndef TAPE_HPP
+#define TAPE_HPP
 
 #include "direction.hpp"
 #include <string>

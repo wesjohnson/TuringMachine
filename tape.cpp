@@ -19,13 +19,13 @@ void Tape::Load(ifstream& definition, bool& valid)
     if((definition >> value) && (value.length() == 1) && (value[0] != '\\')
         && (value[0] != '[') && (value[0] != ']') && (value[0] != '<')
         && (value[0] != '>') && (value[0] >= '!') && (value[0] <= '~'))
-        blank = vlue[0];
+        blank = value[0];
     else
     {
         cout << "Illegal blank character. \n";
         valid = false;
     }
-    if ((!(definition >> value)) || (uppercase(value) != "FINAL_STATES:"))
+    if ((!(definition >> value)) || (UpperCase(value) != "FINAL_STATES:"))
     {
         cout << "Missing keyword after blank character. \n";
         valid = false;

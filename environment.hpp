@@ -1,14 +1,22 @@
-#ifndef USERINTERFACE_H
-#define USERINTERFACE_H
+#ifndef ENVIRONMENT_HPP
+#define ENVIRONMENT_HPP
 
+#include "turingmachine.hpp"
+#include <string>
 using namespace std;
 
-class UserInterface
+class Environment
 {
     private:
         bool toggleHelp;
+        bool progRunning;
+        string command;
+        TuringMachine tm;
+        int maxTransitions;
+        int maxCells;
     public:
-        UserInterface();
+        Environment();
+        void Spawn();
         void Help();
         void Show();
         void View();

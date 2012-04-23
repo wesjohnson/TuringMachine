@@ -1,5 +1,5 @@
-#ifndef FINALSTATES_H
-#define FINALSTATES_H
+#ifndef FINALSTATES_HPP
+#define FINALSTATES_HPP
 
 #include<string>
 #include<vector>
