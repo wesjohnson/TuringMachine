@@ -1,5 +1,7 @@
 #include"environment.hpp"
 #include<iostream>
+//#include<sstream>
+//#include<stdlib.h>
 using namespace std;
 
 Environment::Environment():
@@ -19,25 +21,25 @@ void Environment::Spawn()
         cin >> command; 
         if ((command == "D") || (command == "d"))
             Delete();
-        if ((command == "X") || (command == "x"))
+        else if ((command == "X") || (command == "x"))
             Exit();
-        if ((command == "H") || (command == "h"))
+        else if ((command == "H") || (command == "h"))
             Help();
-        if ((command == "I") || (command == "i"))
+        else if ((command == "I") || (command == "i"))
             Insert();
-        if ((command == "L") || (command == "l"))
+        else if ((command == "L") || (command == "l"))
             List();
-        if ((command == "Q") || (command == "q"))
+        else if ((command == "Q") || (command == "q"))
             Quit();
-        if ((command == "R") || (command == "r"))
+        else if ((command == "R") || (command == "r"))
             Run();
-        if ((command == "E") || (command == "e"))
+        else if ((command == "E") || (command == "e"))
             Set();
-        if ((command == "W") || (command == "w"))
+        else if ((command == "W") || (command == "w"))
             Show();
-        if ((command == "T") || (command == "t"))
+        else if ((command == "T") || (command == "t"))
             Truncate();
-        if ((command == "V") || (command == "v"))
+        else if ((command == "V") || (command == "v"))
             View();
     }
 }
@@ -150,6 +152,7 @@ void Environment::Set()
              << endl;
     }
     cout << "Maximum number of transitions: ";
+    //cin >> noskipws >> maxTransitions;
     cin >> maxTransitions;
 }
 
@@ -179,6 +182,8 @@ void Environment::Show()
 
 void Environment::Truncate()
 {
+    string limit;
+    char *str = new char;
     if (toggleHelp)
     {
         cout << "\nSets the maximum number of cells displayed to the left and\n"
@@ -190,6 +195,11 @@ void Environment::Truncate()
     }
     cout << "Maximum number of cells: ";
     cin >> maxCells;
+    //cin >> noskipws >> maxCells;
+    //cin.get(maxCells, 20);
+    //cin.getline(str, 100);
+    //getline(cin, limit);
+    //maxCells = atoi(str);
 }
 
 void Environment::View()
