@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+using namespace std;
 
 class StrReader
 {
@@ -14,8 +15,9 @@ class StrReader
         StrFile str;
         bool valid;
     public:
-        StrReader(ifstream& input, string name);
-        void Parse(ifstream& input);
+        StrReader(string name);
+        void parse();
+        void printStr();
 };
 
 

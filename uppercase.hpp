@@ -4,7 +4,7 @@
 #include<string>
 using namespace std;
 
-string UpperCase(string value)
+string upperCase(string value)
 {
     string capitals = value;
     for(int i = 0; i < capitals.size(); i++)
@@ -14,6 +14,7 @@ string UpperCase(string value)
             capitals[i] += 32;
         }
     }
+    return capitals;
 }
 
 #endif

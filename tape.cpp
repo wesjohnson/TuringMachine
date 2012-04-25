@@ -1,6 +1,6 @@
 #include "tape.hpp"
 #include "direction.hpp"
-#include "uppercase.hpp"
+//#include "uppercase.hpp"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -25,9 +25,11 @@ void Tape::Load(ifstream& definition, bool& valid)
         cout << "Illegal blank character. \n";
         valid = false;
     }
-    if ((!(definition >> value)) || (UpperCase(value) != "FINAL_STATES:"))
+    /*
+    if ((!(definition >> value)) || (upperCase(value) != "FINAL_STATES:"))
     {
         cout << "Missing keyword after blank character. \n";
         valid = false;
     }
+    */
 }
