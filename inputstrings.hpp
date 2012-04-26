@@ -1,8 +1,9 @@
 #ifndef INPUTSTRINGS_HPP
 #define INPUTSTRINGS_HPP
 
-#include<string>
-#include<vector>
+#include <string>
+#include <vector>
+#include <fstream>
 using namespace std;
 
 class InputStrings
@@ -10,13 +11,14 @@ class InputStrings
     private:
         vector<string> strings;
     public:
-        void Load(ifstream& definition, bool & valid);
-        void View() const;
-        int Size() const;
-        void Insert(string value);
-        void Delete(int index);
-        string Element(int index) const;
-        bool IsElement(string value) const;
+        InputStrings(string strfile);
+        void load(ifstream& str);
+        void view() const;
+        int size() const;
+        void insert(string value);
+        void del(int index);
+        string element(int index) const;
+        bool isElement(string value) const;
 };
 
 #endif

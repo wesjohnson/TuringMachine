@@ -7,7 +7,6 @@
 #include "tapealphabet.hpp"
 #include "states.hpp"
 #include "finalstates.hpp"
-#include "inputstrings.hpp"
 #include <string>
 #include <vector>
 using namespace std;
@@ -36,19 +35,19 @@ class TuringMachine
     public:
         TuringMachine();
         TuringMachine(string definitionFile);
-        void ViewDefinition() const;
-        void ViewInstantaneousDescription(int maxNumberOfCells) const;
-        void Initialize(string inputString);
-        void PerformTransitions(int maxNumberOfTransitions);
-        void TerminateOperation();
-        string InputString() const;
-        int TotalNumberOfTransitions() const;
-        bool IsValid() const;
-        bool IsValidInputString(string value) const;
-        bool IsUsed() const;
-        bool IsOperating() const;
-        bool IsAcceptedInputString() const;
-        bool IsRejectedInputString() const;
+        void viewDefinition() const;
+        void viewInstantaneousDescription(int maxCells) const;
+        void initialize(string inputString);
+        void performTransitions(int maxTransitions);
+        void terminateOperation();
+        string inputString() const;
+        int totalNumberOfTransitions() const;
+        bool isValid() const;
+        bool isValidInputString(string value) const;
+        bool isUsed() const;
+        bool isOperating() const;
+        bool isAcceptedInputString() const;
+        bool isRejectedInputString() const;
 };
 
 #endif

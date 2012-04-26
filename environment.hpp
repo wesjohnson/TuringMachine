@@ -2,8 +2,7 @@
 #define ENVIRONMENT_HPP
 
 #include "turingmachine.hpp"
-#include "defreader.hpp"
-#include "strreader.hpp"
+#include "inputstrings.hpp"
 #include <string>
 using namespace std;
 
@@ -17,10 +16,9 @@ class Environment
         TuringMachine tm;
         int maxTransitions;
         int maxCells;
-        //DefReader def;
-        //StrReader str;
+        InputStrings inputStrings;
     public:
-        Environment();
+        //Environment();
         Environment(string name);
         void spawn();
         void help();

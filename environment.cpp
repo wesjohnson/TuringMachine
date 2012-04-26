@@ -1,9 +1,9 @@
-#include"environment.hpp"
-#include<iostream>
-//#include<sstream>
-//#include<stdlib.h>
+#include "environment.hpp"
+#include <iostream>
+#include <fstream>
 using namespace std;
 
+/*
 Environment::Environment():
     tmName(""),
     progRunning(true),
@@ -11,20 +11,19 @@ Environment::Environment():
     command(""),
     maxTransitions(1),
     maxCells(32)
-    //def(tmName),
-    //str(tmName)
 {}
+*/
 
 Environment::Environment(string name):
+
     tmName(name),
     tm(name),
-    //def(name),
-    //str(name),
+    inputStrings(name),
     progRunning(true),
     toggleHelp(false),
     command(""),
     maxTransitions(1),
-    maxCells(32)
+    maxCells(1)
 {}
 
 void Environment::spawn()
@@ -67,6 +66,10 @@ void Environment::del()
              << "Enter the index of the input string you wish to delete.\n"
              << endl;
     }
+    int index;
+    cout << "index: ";
+    cin >> index;
+    inputStrings.del(index);
 }
 
 void Environment::exitApp()
@@ -109,6 +112,10 @@ void Environment::insert()
              << "the input string list will remain unchanged.\n"
              << endl;
     }
+    string input;
+    cout << "input string: ";
+    cin >> input;
+    inputStrings.insert(input);
 }
 
 void Environment::list()
@@ -119,6 +126,7 @@ void Environment::list()
              << "Turing machine to run on.\n"
              << endl;
     }
+    inputStrings.view();
 }
 
 void Environment::quit()
@@ -133,8 +141,8 @@ void Environment::quit()
              << "is chosen\n"
              << endl;
     }
-    if (tm.IsOperating())
-        tm.TerminateOperation();
+    if (tm.isOperating())
+        tm.terminateOperation();
     else
     {
         cout << "The Turing machine is not running and cannot be quit.\n"
@@ -157,6 +165,7 @@ void Environment::run()
 
 void Environment::set()
 {
+    int limit;
     if (toggleHelp)
     {
         cout << "\nSets the maximum number of transitions for the Turing\n"
@@ -167,8 +176,11 @@ void Environment::set()
              << endl;
     }
     cout << "Maximum number of transitions: ";
-    //cin >> noskipws >> maxTransitions;
-    cin >> maxTransitions;
+    cin >> limit;
+    if(limit > 0)
+        maxTransitions = limit;
+    else
+        cout << "error: invalid setting\n" << endl;
 }
 
 void Environment::show()
@@ -197,7 +209,7 @@ void Environment::show()
 
 void Environment::truncate()
 {
-    string limit;
+    int limit;
     char *str = new char;
     if (toggleHelp)
     {
@@ -209,12 +221,11 @@ void Environment::truncate()
              << endl;
     }
     cout << "Maximum number of cells: ";
-    cin >> maxCells;
-    //cin >> noskipws >> maxCells;
-    //cin.get(maxCells, 20);
-    //cin.getline(str, 100);
-    //getline(cin, limit);
-    //maxCells = atoi(str);
+    cin >> limit;
+    if(limit > 0)
+        maxCells = limit;
+    else
+        cout << "error: invalid setting\n" << endl;
 }
 
 void Environment::view()
@@ -226,5 +237,5 @@ void Environment::view()
              << endl;
     }
 
-    tm.ViewDefinition();
+    tm.viewDefinition();
 }

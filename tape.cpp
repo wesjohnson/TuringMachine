@@ -39,3 +39,35 @@ void Tape::view() const
     cout << "Blank Character:" << endl;
     cout << blank << endl << endl;
 }
+
+void Tape::initialize(string inputString)
+{
+    cells = inputString;
+    currentCell = 0;
+}
+
+void Tape::update(char writeChar, Direction moveDirection)
+{
+    cells[currentCell] = writeChar;
+    if (moveDirection == 'L')
+        --currentCell;
+    else
+        ++currentCell;
+}
+
+char Tape::currentCharacter() const
+{
+    return cells[currentCell];
+}
+
+char Tape::blankCharacter() const
+{
+    return blank;
+}
+
+bool Tape::isFirstCell() const
+{
+    if(currentCell == 0)
+        return true;
+    return false;
+}

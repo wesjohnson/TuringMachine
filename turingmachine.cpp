@@ -5,7 +5,6 @@
 #include "tapealphabet.hpp"
 #include "states.hpp"
 #include "finalstates.hpp"
-#include "inputstrings.hpp"
 #include "utilities.hpp"
 #include <string>
 #include <vector>
@@ -51,7 +50,7 @@ TuringMachine::TuringMachine(string definitionFile)
     finalStates.load(definition, valid);
 }
 
-void TuringMachine::ViewDefinition() const
+void TuringMachine::viewDefinition() const
 {
     cout << "Description:" << endl;
     for(int i = 0; i < description.size(); i++)
@@ -67,33 +66,43 @@ void TuringMachine::ViewDefinition() const
     finalStates.view();
 }
 
-void TuringMachine::TerminateOperation()
+void TuringMachine::initialize(string inputString)
+{
+    originalInputString = inputString;
+    tape.initialize(inputString);
+}
+
+void TuringMachine::performTransitions(int maxTransitions)
+{
+}
+
+void TuringMachine::terminateOperation()
 {
     operating = false;
     originalInputString = "";
 }
 
-bool TuringMachine::IsValid() const
+bool TuringMachine::isValid() const
 {
     return true;
 }
 
-bool TuringMachine::IsUsed() const
+bool TuringMachine::isUsed() const
 {
     return used;
 }
 
-bool TuringMachine::IsOperating() const
+bool TuringMachine::isOperating() const
 {
     return operating;
 }
 
-bool TuringMachine::IsAcceptedInputString() const
+bool TuringMachine::isAcceptedInputString() const
 {
     return accepted;
 }
 
-bool TuringMachine::IsRejectedInputString() const
+bool TuringMachine::isRejectedInputString() const
 {
     return rejected;
 }
