@@ -10,7 +10,7 @@
 #include "deffile.hpp"
 #include <string>
 
-int main()
+int main(int argc, char* argv[])
 {
     //UserInterface test;// = new UserInterface();
     //TuringMachine test;
@@ -18,8 +18,10 @@ int main()
     //env.Spawn();
     //StrReader stread("tm");
     //stread.printStr();
-    DefReader defread("tm");
-    defread.printDef();
+    Environment env(argv[1]);
+    env.spawn();
+    //DefReader defread("tm");
+    //defread.printDef();
     //stread.Parse();
     return 0;
 }

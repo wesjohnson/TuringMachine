@@ -13,17 +13,17 @@ class TransitionFunction
     private:
         vector<Transition> transitions;
     public:
-        void Load(ifstream& definition, bool& valid);
-        void View() const;
-        int Size() const;
-        string SourceState(int index) const;
-        char ReadChar(int index) const;
-        string DestinationState(int index) const;
-        char WriteChar(int index) const;
-        bool IsDefinedTransition(string sourceState, char readChar, 
+        void load(ifstream& definition, bool& valid);
+        void view() const;
+        int size() const;
+        string sourceState(int index) const;
+        char readChar(int index) const;
+        string destinationState(int index) const;
+        char writeChar(int index) const;
+        bool isDefinedTransition(string sourceState, char readChar, 
                 string& destinationState, char& writeChar, 
                 Direction& moveDirection) const;
-        bool IsSourceState(string state) const;
+        bool isSourceState(string state) const;
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "defreader.hpp"
 #include "deffile.hpp"
-#include "uppercase.hpp"
+#include "utilities.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -13,6 +13,7 @@ DefReader::DefReader(string name)
     valid = false;
 
     parse();
+    printDef();
 }
 
 void DefReader::parse()
@@ -27,37 +28,37 @@ void DefReader::parse()
     string value;
     while(input >> value)
     {
-        if(upperCase(value) == "STATES:")
+        if(Utilities::upperCase(value) == "STATES:")
         {
             progress = 1;
             input >> value;
         }
-        if(upperCase(value) == "INPUT_ALPHABET:")
+        if(Utilities::upperCase(value) == "INPUT_ALPHABET:")
         {
             progress = 2;
             input >> value;
         }
-        if(upperCase(value) == "TAPE_ALPHABET:")
+        if(Utilities::upperCase(value) == "TAPE_ALPHABET:")
         {
             progress = 3;
             input >> value;
         }
-        if(upperCase(value) == "TRANSITION_FUNCTION:")
+        if(Utilities::upperCase(value) == "TRANSITION_FUNCTION:")
         {
             progress = 4;
             input >> value;
         }
-        if(upperCase(value) == "INITIAL_STATE:")
+        if(Utilities::upperCase(value) == "INITIAL_STATE:")
         {
             progress = 5;
             input >> value;
         }
-        if(upperCase(value) == "BLANK_CHARACTER:")
+        if(Utilities::upperCase(value) == "BLANK_CHARACTER:")
         {
             progress = 6;
             input >> value;
         }
-        if(upperCase(value) == "FINAL_STATES:")
+        if(Utilities::upperCase(value) == "FINAL_STATES:")
         {
             progress = 7;
             input >> value;
@@ -100,21 +101,21 @@ void DefReader::parse()
     /*
     while(getline(input, value, ' '))
     {
-        while(upperCase(value) != "STATES")
+        while(Utilities::upperCase(value) != "STATES")
             insertDefinition(value);
-        while(upperCase(value) != "INPUT_ALPHABET")
+        while(Utilities::upperCase(value) != "INPUT_ALPHABET")
             insertState(value);
-        while(upperCase(value) != "TAPE_ALPHABET")
+        while(Utilities::upperCase(value) != "TAPE_ALPHABET")
             insertInputAlphabetChar(value);
-        while(upperCase(value) != "TRANSITION_FUNCTION")
+        while(Utilities::upperCase(value) != "TRANSITION_FUNCTION")
             insertTapeAlphabetChar(value);
-        while(upperCase(value) != "INITIAL_STATE")
+        while(Utilities::upperCase(value) != "INITIAL_STATE")
             insertTransition(value);
-        while(upperCase(value) != "BLANK_CHARACTER")
+        while(Utilities::upperCase(value) != "BLANK_CHARACTER")
             setInitialState(value);
-        while(upperCase(value) != "FINAL_STATES")
+        while(Utilities::upperCase(value) != "FINAL_STATES")
             setBlankChar(value);
-        while(upperCase(value))
+        while(Utilities::upperCase(value))
     }
     */
 }

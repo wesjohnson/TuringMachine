@@ -15,15 +15,15 @@ class Tape
 
     public:
         Tape();
-        void Load(ifstream& definition, bool& valid);
-        void View() const;
-        void Initialize(string inputString);
-        void Update(char writeChar, Direction moveDirection);
-        string Left(int maxNumberOfCells) const;
-        string Right(int maxNumberOfCells) const;
-        char CurrentCharacter() const;
-        char BlankCharacter() const;
-        bool IsFirstCell() const;
+        void load(ifstream& definition, bool& valid);
+        void view() const;
+        void initialize(string inputString);
+        void update(char writeChar, Direction moveDirection);
+        string left(int maxNumberOfCells) const;
+        string right(int maxNumberOfCells) const;
+        char currentCharacter() const;
+        char blankCharacter() const;
+        bool isFirstCell() const;
 };
 
 #endif

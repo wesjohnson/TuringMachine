@@ -16,11 +16,11 @@ class Transition
     public:
         Transition(string sourceState, char readChar, string destinationState, 
                 char writeChar, Direction moveDirection);
-        string SourceState() const;
-        char ReadChar() const;
-        string DestinationState() const;
-        char WriteChar() const;
-        Direction Move() const;
+        string sourceState() const;
+        char readChar() const;
+        string destState() const;
+        char writeChar() const;
+        Direction moveDir() const;
 };
 
 #endif

@@ -1,60 +1,90 @@
 #include "transitionfunction.hpp"
 #include "transition.hpp"
 #include "direction.hpp"
+#include "utilities.hpp"
+#include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
 using namespace std;
 
-void TransitionFunction::Load(ifstream& definition, bool& valid)
-{}
+void TransitionFunction::load(ifstream& definition, bool& valid)
+{
+    string sourceState;
+    string readChar;
+    string destState;
+    string writeChar;
+    Direction direction;
+    while( (definition >> sourceState) &&
+            (Utilities::upperCase(sourceState) != "INITIAL_STATE:") )
+    {
+        definition >> readChar;
+        definition >> destState;
+        definition >> writeChar;
+        definition >> direction;
 
-void TransitionFunction::View() const
-{}
+        Transition transition( sourceState, readChar[0], destState,
+                writeChar[0], direction);
+        transitions.push_back(transition);
+    }
+}
 
-int TransitionFunction::Size() const
+void TransitionFunction::view() const
+{
+    cout << "Transition Function:" << endl;
+    for( int i = 0; i < transitions.size(); i++ )
+    {
+        cout << transitions[i].sourceState() << " " << transitions[i].readChar()
+             << " " << transitions[i].destState() << " "
+             << " " << transitions[i].writeChar() << " "
+             << " " << transitions[i].moveDir() << endl;
+    }
+    cout << endl << endl;
+}
+
+int TransitionFunction::size() const
 {
     return transitions.size();
 }
 
-string TransitionFunction::SourceState(int index) const
+string TransitionFunction::sourceState(int index) const
 {
-    return transitions[index].SourceState();
+    return transitions[index].sourceState();
 }
 
-char TransitionFunction::ReadChar(int index) const
+char TransitionFunction::readChar(int index) const
 {
-    return transitions[index].ReadChar();
+    return transitions[index].readChar();
 }
 
-string TransitionFunction::DestinationState(int index) const
+string TransitionFunction::destinationState(int index) const
 {
-    return transitions[index].DestinationState();
+    return transitions[index].destState();
 }
 
-char TransitionFunction::WriteChar(int index) const
+char TransitionFunction::writeChar(int index) const
 {
-    return transitions[index].WriteChar();
+    return transitions[index].writeChar();
 }
 
-bool TransitionFunction::IsDefinedTransition(string sourceState, char readChar, 
+bool TransitionFunction::isDefinedTransition(string sourceState, char readChar, 
         string& destinationState, char& writeChar, 
         Direction& moveDirection) const
 {
     for (int i = 0; i < transitions.size(); i++)
     {
-        if ((transitions[i].SourceState() == sourceState) &&
-                (transitions[i].ReadChar() == readChar))
+        if ((transitions[i].sourceState() == sourceState) &&
+                (transitions[i].readChar() == readChar))
         {
-            destinationState = transitions[i].DestinationState();
-            writeChar = transitions[i].WriteChar();
-            moveDirection = transitions[i].Move();
+            destinationState = transitions[i].destState();
+            writeChar = transitions[i].writeChar();
+            moveDirection = transitions[i].moveDir();
             return true;
         }
     }
     return false;
 }
-bool TransitionFunction::IsSourceState(string state) const
+bool TransitionFunction::isSourceState(string state) const
 {
     return false;
 }

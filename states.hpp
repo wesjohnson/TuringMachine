@@ -1,18 +1,19 @@
 #ifndef STATES_H
 #define STATES_H
 
-#include<string>
-#include<vector>
+#include <string>
+#include <vector>
+#include <fstream>
 using namespace std;
 
 class States
 {
-    public:
-       vector<string> names; 
     private:
-       void Load(ifstream& definition, bool& valid);
-       void View() const;
-       bool IsElement(string value) const;
+       vector<string> names; 
+    public:
+       void load(ifstream& definition, bool& valid);
+       void view() const;
+       bool isElement(string value) const;
 };
 
 #endif

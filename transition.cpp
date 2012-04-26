@@ -12,27 +12,27 @@ Transition::Transition(string sourceState, char readChar, string
     move(moveDirection)
 {}
 
-string Transition::SourceState() const
+string Transition::sourceState() const
 {
     return source;
 }
 
-char Transition::ReadChar() const
+char Transition::readChar() const
 {
     return read;
 }
 
-string Transition::DestinationState() const
+string Transition::destState() const
 {
     return destination;
 }
 
-char Transition::WriteChar() const
+char Transition::writeChar() const
 {
     return write;
 }
 
-Direction Transition::Move() const
+Direction Transition::moveDir() const
 {
     return move;
 }

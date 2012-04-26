@@ -5,6 +5,21 @@
 using namespace std;
 
 Environment::Environment():
+    tmName(""),
+    progRunning(true),
+    toggleHelp(false),
+    command(""),
+    maxTransitions(1),
+    maxCells(32)
+    //def(tmName),
+    //str(tmName)
+{}
+
+Environment::Environment(string name):
+    tmName(name),
+    tm(name),
+    //def(name),
+    //str(name),
     progRunning(true),
     toggleHelp(false),
     command(""),
@@ -12,7 +27,7 @@ Environment::Environment():
     maxCells(32)
 {}
 
-void Environment::Spawn()
+void Environment::spawn()
 {
     cout << string(100, '\n');
     while(progRunning)
@@ -20,31 +35,31 @@ void Environment::Spawn()
         cout << "command: ";
         cin >> command; 
         if ((command == "D") || (command == "d"))
-            Delete();
+            del();
         else if ((command == "X") || (command == "x"))
-            Exit();
+            exitApp();
         else if ((command == "H") || (command == "h"))
-            Help();
+            help();
         else if ((command == "I") || (command == "i"))
-            Insert();
+            insert();
         else if ((command == "L") || (command == "l"))
-            List();
+            list();
         else if ((command == "Q") || (command == "q"))
-            Quit();
+            quit();
         else if ((command == "R") || (command == "r"))
-            Run();
+            run();
         else if ((command == "E") || (command == "e"))
-            Set();
+            set();
         else if ((command == "W") || (command == "w"))
-            Show();
+            show();
         else if ((command == "T") || (command == "t"))
-            Truncate();
+            truncate();
         else if ((command == "V") || (command == "v"))
-            View();
+            view();
     }
 }
 
-void Environment::Delete()
+void Environment::del()
 {
     if (toggleHelp)
     {
@@ -54,12 +69,12 @@ void Environment::Delete()
     }
 }
 
-void Environment::Exit()
+void Environment::exitApp()
 {
     progRunning = false;
 }
 
-void Environment::Help()
+void Environment::help()
 {
     if (toggleHelp)
         toggleHelp = false;
@@ -83,7 +98,7 @@ void Environment::Help()
     }
 }
 
-void Environment::Insert()
+void Environment::insert()
 {
     if (toggleHelp)
     {
@@ -96,7 +111,7 @@ void Environment::Insert()
     }
 }
 
-void Environment::List()
+void Environment::list()
 {
     if (toggleHelp)
     {
@@ -106,7 +121,7 @@ void Environment::List()
     }
 }
 
-void Environment::Quit()
+void Environment::quit()
 {
     if (toggleHelp)
     {
@@ -127,7 +142,7 @@ void Environment::Quit()
     }
 }
 
-void Environment::Run()
+void Environment::run()
 {
     if (toggleHelp)
     {
@@ -140,7 +155,7 @@ void Environment::Run()
     }
 }
 
-void Environment::Set()
+void Environment::set()
 {
     if (toggleHelp)
     {
@@ -156,7 +171,7 @@ void Environment::Set()
     cin >> maxTransitions;
 }
 
-void Environment::Show()
+void Environment::show()
 {
     if (toggleHelp)
     {
@@ -180,7 +195,7 @@ void Environment::Show()
          << "Status of Turing machine:\n" << endl;
 }
 
-void Environment::Truncate()
+void Environment::truncate()
 {
     string limit;
     char *str = new char;
@@ -202,7 +217,7 @@ void Environment::Truncate()
     //maxCells = atoi(str);
 }
 
-void Environment::View()
+void Environment::view()
 {
     if (toggleHelp)
     {
@@ -210,4 +225,6 @@ void Environment::View()
              << "the formal definition.\n"
              << endl;
     }
+
+    tm.ViewDefinition();
 }
