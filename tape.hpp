@@ -18,11 +18,11 @@ class Tape
         void load(ifstream& definition, bool& valid);
         void view() const;
         void initialize(string inputString);
-        void update(char writeChar, Direction moveDirection);
-        string left(int maxNumberOfCells) const;
-        string right(int maxNumberOfCells) const;
-        char currentCharacter() const;
-        char blankCharacter() const;
+        void update(char writeChar, Direction moveDir);
+        string left(int maxCells) const;
+        string right(int maxCells) const;
+        char currentChar() const;
+        char blankChar() const;
         bool isFirstCell() const;
 };
 

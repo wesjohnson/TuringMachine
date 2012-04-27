@@ -66,14 +66,42 @@ void TuringMachine::viewDefinition() const
     finalStates.view();
 }
 
+void TuringMachine::viewInstantaneousDescription(int maxCells) const
+{
+    cout << tape.left(maxCells);
+    cout << currentState;
+    cout << tape.right(maxCells) << endl;
+}
+
 void TuringMachine::initialize(string inputString)
 {
     originalInputString = inputString;
     tape.initialize(inputString);
+    currentState = initialState;
+    used = true;
 }
 
 void TuringMachine::performTransitions(int maxTransitions)
 {
+    string destState;
+    char writeChar;
+    Direction moveDir;
+
+    for(int i = 0; i < maxTransitions; i++)
+    {
+        transitionFunction.isDefinedTransition( currentState, tape.currentChar(),
+                destState, writeChar, moveDir );
+        cout << currentState << " " << tape.currentChar() << " " << destState
+             << " " << writeChar << " " << moveDir << endl; 
+        tape.update( writeChar, moveDir );
+        if(finalStates.isElement(destState))
+        {
+            accepted = true;
+            cout << "accepted" << endl;
+            operating = false;
+        }
+        currentState = destState;
+    }
 }
 
 void TuringMachine::terminateOperation()

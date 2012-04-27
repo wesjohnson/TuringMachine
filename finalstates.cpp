@@ -22,3 +22,23 @@ void FinalStates::view() const
     }
     cout << endl;
 }
+
+int FinalStates::size() const
+{
+    return names.size();
+}
+
+string FinalStates::element(int index) const
+{
+    return names[index];
+}
+
+bool FinalStates::isElement(string value) const
+{
+    for(int i = 0; i < names.size(); i++)
+    {
+        if(value == names[i])
+            return true;
+    }
+    return false;
+}

@@ -14,7 +14,7 @@ TRANSITION_FUNCTION:
    s1 Y  s1 Y R
    s2 a  s2 a L
    s2 X  s0 X R
-   s2 Y  s3 Y L
+   s2 Y  s2 Y L
    s3 Y  s3 Y R
    s3 -  s4 - R
 

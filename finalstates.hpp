@@ -12,6 +12,8 @@ class FinalStates
     public:
         void load(ifstream& definition, bool& valid);
         void view() const;
+        int size() const;
+        string element(int index) const;
         bool isElement(string value) const;
 };
 

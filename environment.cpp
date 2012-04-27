@@ -23,7 +23,7 @@ Environment::Environment(string name):
     toggleHelp(false),
     command(""),
     maxTransitions(1),
-    maxCells(1)
+    maxCells(32)
 {}
 
 void Environment::spawn()
@@ -161,6 +161,16 @@ void Environment::run()
              << "transitions specified by the Set command.\n"
              << endl;
     }
+    if(!tm.isUsed())
+    {
+        int input;
+        cout << "index of input string: ";
+        cin >> input;
+        tm.initialize(inputStrings.element(input));
+        tm.viewInstantaneousDescription(maxCells);
+    }
+    tm.performTransitions(maxTransitions);
+    tm.viewInstantaneousDescription(maxCells);
 }
 
 void Environment::set()
@@ -205,6 +215,7 @@ void Environment::show()
     cout << "Maximum number of trasnitions: " << maxTransitions << "\n"
          << "Maximum number of left/right cells: " << maxCells << "\n"
          << "Status of Turing machine:\n" << endl;
+    tm.viewInstantaneousDescription(maxCells);
 }
 
 void Environment::truncate()

@@ -42,25 +42,59 @@ void Tape::view() const
 
 void Tape::initialize(string inputString)
 {
-    cells = inputString;
+    cells = inputString + blank;
     currentCell = 0;
 }
 
-void Tape::update(char writeChar, Direction moveDirection)
+void Tape::update(char writeChar, Direction moveDir)
 {
     cells[currentCell] = writeChar;
-    if (moveDirection == 'L')
+    if (moveDir == 'L')
         --currentCell;
     else
+    {
         ++currentCell;
+        if(currentCell == cells.size())
+            cells = cells + blank;
+    }
+    /*
+    for(int i = 0; i < cells.size(); i++)
+    {
+        cout << cells[i];
+    }
+    cout << endl;
+    */
 }
 
-char Tape::currentCharacter() const
+string Tape::left(int maxCells) const
+{
+    string left;
+    if(currentCell < maxCells)
+        if(currentCell > 0)
+            left = cells.substr(0, currentCell);
+        else
+            left = "";
+    else
+        left = cells;
+    return left;
+}
+
+string Tape::right(int maxCells) const
+{
+    string right;
+    if((currentCell + maxCells) < cells.size())
+        right = cells;
+    else
+        right = cells.substr(currentCell, maxCells);
+    return right;
+}
+
+char Tape::currentChar() const
 {
     return cells[currentCell];
 }
 
-char Tape::blankCharacter() const
+char Tape::blankChar() const
 {
     return blank;
 }
