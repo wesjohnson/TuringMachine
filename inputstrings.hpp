@@ -10,6 +10,7 @@ class InputStrings
 {
     private:
         vector<string> strings;
+        bool modified;
     public:
         InputStrings(string strfile);
         void load(ifstream& str);
@@ -19,6 +20,7 @@ class InputStrings
         void del(int index);
         string element(int index) const;
         bool isElement(string value) const;
+        bool isModified() const;
 };
 
 #endif

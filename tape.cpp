@@ -36,8 +36,7 @@ void Tape::load(ifstream& definition, bool& valid)
 
 void Tape::view() const
 {
-    cout << "Blank Character:" << endl;
-    cout << blank << endl << endl;
+    cout << blank;
 }
 
 void Tape::initialize(string inputString)
@@ -57,13 +56,6 @@ void Tape::update(char writeChar, Direction moveDir)
         if(currentCell == cells.size())
             cells = cells + blank;
     }
-    /*
-    for(int i = 0; i < cells.size(); i++)
-    {
-        cout << cells[i];
-    }
-    cout << endl;
-    */
 }
 
 string Tape::left(int maxCells) const
@@ -75,17 +67,17 @@ string Tape::left(int maxCells) const
         else
             left = "";
     else
-        left = cells;
+        left = "<<" + cells.substr((currentCell - maxCells), currentCell);
     return left;
 }
 
 string Tape::right(int maxCells) const
 {
     string right;
-    if((currentCell + maxCells) < cells.size())
-        right = cells;
-    else
+    if((currentCell + maxCells) > cells.size())
         right = cells.substr(currentCell, maxCells);
+    else
+        right = cells.substr(currentCell, maxCells) + ">>";
     return right;
 }
 

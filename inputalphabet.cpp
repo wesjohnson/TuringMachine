@@ -6,29 +6,27 @@ using namespace std;
 
 void InputAlphabet::load(ifstream& definition, bool& valid)
 {
-    //definition.seekg(0, ios::beg);
     string value;
-    /*
-    while( (definition >> value) && 
-            (Utilities::upperCase(value) != "INPUT_ALPHABET:") )
-    {}
-    */
-
     while( (definition >> value) && 
             (Utilities::upperCase(value) != "TAPE_ALPHABET:") )
     {
-        alphabet.push_back(value[0]);
+        if((value.size() == 1) && (value[0] != '\\') && (value[0] != '[') 
+                && (value[0] != ']') && (value[0] != '<') && (value[0] != '>'))
+            alphabet.push_back(value[0]);
+        else
+        {
+            cout << "Error: illegal character in input alphabet" << endl;
+            valid = false;
+        }
     }
 }
 
 void InputAlphabet::view() const
 {
-    cout << "Input Alphabet:" << endl;
     for(int i = 0; i < alphabet.size(); i++)
     {
-        cout << alphabet[i] << " ";
+        cout << alphabet[i] << ", ";
     }
-    cout << endl << endl;
 }
 
 int InputAlphabet::size() const

@@ -1,21 +1,10 @@
 #include "environment.hpp"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 using namespace std;
 
-/*
-Environment::Environment():
-    tmName(""),
-    progRunning(true),
-    toggleHelp(false),
-    command(""),
-    maxTransitions(1),
-    maxCells(32)
-{}
-*/
-
 Environment::Environment(string name):
-
     tmName(name),
     tm(name),
     inputStrings(name),
@@ -28,11 +17,12 @@ Environment::Environment(string name):
 
 void Environment::spawn()
 {
-    cout << string(100, '\n');
+    if(!tm.isValid())
+        exit(-1);
     while(progRunning)
     {
         cout << "command: ";
-        cin >> command; 
+        getline(cin, command);
         if ((command == "D") || (command == "d"))
             del();
         else if ((command == "X") || (command == "x"))
@@ -55,6 +45,10 @@ void Environment::spawn()
             truncate();
         else if ((command == "V") || (command == "v"))
             view();
+        else if ((command == ""))
+        {}
+        else
+            cout << "Unrecognized command" << endl;
     }
 }
 
@@ -66,10 +60,15 @@ void Environment::del()
              << "Enter the index of the input string you wish to delete.\n"
              << endl;
     }
+    string str;
     int index;
     cout << "index: ";
-    cin >> index;
-    inputStrings.del(index);
+    getline(cin, str);
+    index = atoi(str.c_str());
+    if(value > inputStrings.size())
+        cout << "Not a valid input string index" << endl;
+    else
+        inputStrings.del((index - 1));
 }
 
 void Environment::exitApp()
@@ -112,10 +111,15 @@ void Environment::insert()
              << "the input string list will remain unchanged.\n"
              << endl;
     }
-    string input;
+    string value;
     cout << "input string: ";
-    cin >> input;
-    inputStrings.insert(input);
+    getline(cin, value);
+    if(inputStrings.isElement(value))
+        cout << "This string is already in the input string list" << endl;
+    else if(tm.isValidInputString(value))
+        inputStrings.insert(value);
+    else
+        cout << "String contains invalid characters" << endl;
 }
 
 void Environment::list()
@@ -161,12 +165,14 @@ void Environment::run()
              << "transitions specified by the Set command.\n"
              << endl;
     }
-    if(!tm.isUsed())
+    if(!tm.isOperating())
     {
-        int input;
+        string str;
+        int index;
         cout << "index of input string: ";
-        cin >> input;
-        tm.initialize(inputStrings.element(input));
+        getline(cin, str);
+        index = atoi(str.c_str());
+        tm.initialize(inputStrings.element(index - 1));
         tm.viewInstantaneousDescription(maxCells);
     }
     tm.performTransitions(maxTransitions);
@@ -175,7 +181,6 @@ void Environment::run()
 
 void Environment::set()
 {
-    int limit;
     if (toggleHelp)
     {
         cout << "\nSets the maximum number of transitions for the Turing\n"
@@ -185,8 +190,11 @@ void Environment::set()
              << "remain unchanged.\n"
              << endl;
     }
+    string str;
+    int limit;
     cout << "Maximum number of transitions: ";
-    cin >> limit;
+    getline(cin, str);
+    limit = atoi(str.c_str());
     if(limit > 0)
         maxTransitions = limit;
     else
@@ -200,7 +208,6 @@ void Environment::show()
         cout << "\nDisplays the program's status information.\n"
              << endl;
     }
-
     cout << "\nCourse:        CPTS 322\n"
          << "Semester:      Spring\n"
          << "Year:          2012\n"
@@ -212,16 +219,33 @@ void Environment::show()
         cout << "Yes\n";
     else
         cout << "No\n";
-    cout << "Maximum number of trasnitions: " << maxTransitions << "\n"
+    cout << "Maximum number of transitions: " << maxTransitions << "\n"
          << "Maximum number of left/right cells: " << maxCells << "\n"
-         << "Status of Turing machine:\n" << endl;
-    tm.viewInstantaneousDescription(maxCells);
+         << "Status of Turing machine:\n";
+    if(!(tm.isUsed()))
+        cout << "    The Turing machine has not been run" << endl;
+    else if (tm.isOperating())
+    {
+        cout << "    Original input string: " << tm.inputString() << endl;
+        cout << "    Total transitions performed: " << tm.totalTransitions() 
+             << endl;
+    }
+    else
+    {
+        cout << "    Last input string: " << tm.inputString() << endl;
+        if ((tm.isAccepted()) && !(tm.isRejected()))
+            cout << "    Input string was accepted." << endl;
+        else if (!(tm.isAccepted()) && (tm.isRejected()))
+            cout << "    Input string was rejected." << endl;
+        else
+            cout << "    Operation was terminated by the user." << endl;
+        cout << "    Total transitions performed: " << tm.totalTransitions() 
+             << endl;
+    }
 }
 
 void Environment::truncate()
 {
-    int limit;
-    char *str = new char;
     if (toggleHelp)
     {
         cout << "\nSets the maximum number of cells displayed to the left and\n"
@@ -231,8 +255,11 @@ void Environment::truncate()
              << "the maximum number of cells displayed will remain unchanged.\n"
              << endl;
     }
+    string str;
+    int limit;
     cout << "Maximum number of cells: ";
-    cin >> limit;
+    getline(cin, str);
+    limit = atoi(str.c_str());
     if(limit > 0)
         maxCells = limit;
     else
@@ -247,6 +274,5 @@ void Environment::view()
              << "the formal definition.\n"
              << endl;
     }
-
     tm.viewDefinition();
 }

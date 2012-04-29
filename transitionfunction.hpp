@@ -18,7 +18,7 @@ class TransitionFunction
         int size() const;
         string sourceState(int index) const;
         char readChar(int index) const;
-        string destinationState(int index) const;
+        string destState(int index) const;
         char writeChar(int index) const;
         bool isDefinedTransition(string sourceState, char readChar, 
                 string& destinationState, char& writeChar, 

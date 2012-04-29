@@ -24,7 +24,7 @@ class TuringMachine
         string initialState;
         string currentState;
         string originalInputString;
-        int numberOfTransitions;
+        int numTransitions;
         bool valid;
         bool used;
         bool invalid;
@@ -41,13 +41,13 @@ class TuringMachine
         void performTransitions(int maxTransitions);
         void terminateOperation();
         string inputString() const;
-        int totalNumberOfTransitions() const;
+        int totalTransitions() const;
         bool isValid() const;
         bool isValidInputString(string value) const;
         bool isUsed() const;
         bool isOperating() const;
-        bool isAcceptedInputString() const;
-        bool isRejectedInputString() const;
+        bool isAccepted() const;
+        bool isRejected() const;
 };
 
 #endif

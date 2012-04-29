@@ -1,4 +1,5 @@
 #include "inputstrings.hpp"
+#include "inputalphabet.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -26,7 +27,7 @@ void InputStrings::view() const
     cout << "Input Strings:" << endl;
     for(int i = 0; i < strings.size(); i++)
     {
-        cout << strings[i] << endl;
+        cout << i + 1 << ":\t" << strings[i] << endl;
     }
 }
 
@@ -38,11 +39,13 @@ int InputStrings::size() const
 void InputStrings::insert(string value)
 {
     strings.push_back(value);
+    modified = true;
 }
 
 void InputStrings::del(int index)
 {
     strings.erase(strings.begin() + index);
+    modified = true;
 }
 
 string InputStrings::element(int index) const
@@ -58,4 +61,9 @@ bool InputStrings::isElement(string value) const
             return true;
     }
     return false;
+}
+
+bool InputStrings::isModified() const
+{
+    return modified;
 }
