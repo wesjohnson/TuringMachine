@@ -8,9 +8,12 @@ using namespace std;
 
 InputStrings::InputStrings(string strfile)
 {
+    //fstream str;
+    //str.open((strfile + ".str").c_str(), fstream::in);
     ifstream str((strfile + ".str").c_str());
     if(str)
         load(str);
+    str.close();
 }
 
 void InputStrings::load(ifstream& str)

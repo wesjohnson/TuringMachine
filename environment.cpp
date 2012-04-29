@@ -65,7 +65,7 @@ void Environment::del()
     cout << "index: ";
     getline(cin, str);
     index = atoi(str.c_str());
-    if(value > inputStrings.size())
+    if(index > inputStrings.size())
         cout << "Not a valid input string index" << endl;
     else
         inputStrings.del((index - 1));
@@ -73,6 +73,17 @@ void Environment::del()
 
 void Environment::exitApp()
 {
+    if(inputStrings.isModified())
+    {
+        ofstream str;
+        str.open((tmName + ".str").c_str());
+        for(int i = 0; i < inputStrings.size(); i++)
+        {
+            str << inputStrings.element(i) << '\n';
+        }
+        str.close();
+        cout << "Input string file written" << endl;
+    }
     progRunning = false;
 }
 
