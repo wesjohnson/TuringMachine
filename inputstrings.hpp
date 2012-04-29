@@ -12,15 +12,18 @@ class InputStrings
         vector<string> strings;
         bool modified;
     public:
-        InputStrings(string strfile);
-        void load(ifstream& str);
+        InputStrings();
+        //InputStrings(string strfile);
+        void load(string value);
         void view() const;
         int size() const;
         void insert(string value);
+        void setModified(bool value);
         void del(int index);
         string element(int index) const;
         bool isElement(string value) const;
         bool isModified() const;
+        //bool isValidInputString(string value) const;
 };
 
 #endif

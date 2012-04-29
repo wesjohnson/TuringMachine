@@ -43,13 +43,27 @@ using namespace std;
 Environment::Environment(string name):
     tmName(name),
     tm(name),
-    inputStrings(name),
+    //inputStrings(name),
     progRunning(true),
     toggleHelp(false),
     command(""),
     maxTransitions(1),
     maxCells(32)
-{}
+{
+    ifstream str((name + ".str").c_str());
+    if(str)
+    {
+        string value;
+        while(str >> value)
+        {
+            if(tm.isValidInputString(value))
+                inputStrings.load(value);
+            else
+                inputStrings.setModified(true);
+        }
+    }
+    str.close();
+}
 
 void Environment::spawn()
 {

@@ -40,25 +40,35 @@
 #include <vector>
 #include <fstream>
 using namespace std;
-
+/*
 InputStrings::InputStrings(string strfile)
 {
-    //fstream str;
-    //str.open((strfile + ".str").c_str(), fstream::in);
     ifstream str((strfile + ".str").c_str());
     if(str)
         load(str);
     str.close();
 }
+*/
 
+InputStrings::InputStrings():
+    modified(false)
+{}
+
+void InputStrings::load(string value)
+{
+    strings.push_back(value);
+}
+/*
 void InputStrings::load(ifstream& str)
 {
     string value;
     while (str >> value)
     {
-        strings.push_back(value);
+        if(isValidInputString)
+            strings.push_back(value);
     }
 }
+*/
 
 void InputStrings::view() const
 {
@@ -78,6 +88,11 @@ void InputStrings::insert(string value)
 {
     strings.push_back(value);
     modified = true;
+}
+
+void InputStrings::setModified(bool value)
+{
+    modified = value;
 }
 
 void InputStrings::del(int index)
@@ -100,6 +115,17 @@ bool InputStrings::isElement(string value) const
     }
     return false;
 }
+/*
+bool InputStrings::isValidInputString(string value) const
+{
+    for(int i = 0; i < value.size(); i++)
+    {
+        if(!(inputAlphabet.isElement(value[i])))
+            return false;
+    }
+    return true;
+}
+*/
 
 bool InputStrings::isModified() const
 {
