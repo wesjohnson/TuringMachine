@@ -1,3 +1,39 @@
+/*  description:
+ *      The environment provides the user with a text based interface,
+ *      handles all of the commands, some of the error checking,
+ *      and initializes the TuringMachine and InputString classes
+ *  functions:
+ *      Environment(string name)
+ *      void spawn()
+ *      void help()
+ *      void show()
+ *      void view()
+ *      void list()
+ *      void insert()
+ *      void del()
+ *      void set()
+ *      void truncate()
+ *      void run()
+ *      void quit()
+ *      void exitApp();
+ *  module:
+ *      environment
+ *  files:
+ *      environment.hpp
+ *      environment.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "environment.hpp"
 #include <iostream>
 #include <fstream>

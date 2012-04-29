@@ -1,3 +1,44 @@
+/*  description:
+ *      A Turing machine processes an input string. The TuringMachine class
+ *      provides this functionality to the Turing machine emulator. It is
+ *      initialized from a definition file that must exist prior to running
+ *      the program.  The TuringMachine class is composed of many other
+ *      classes:
+ *          Tape, InputAlphabet, TapeAlphabet, TransitionFunction,
+ *          States, FinalStates
+ *  functions:
+ *      TuringMachine(string definitionFile)
+ *      void viewDefinition() const
+ *      void viewInstantaneousDescription(int maxCells) const
+ *      void initialize(string inputString)
+ *      void performTransitions(int maxTransitions)
+ *      void terminateOperation()
+ *      string inputString() const
+ *      int totalTransitions() const
+ *      bool isValid() const
+ *      bool isValidInputString(string value) const
+ *      bool isUsed() const
+ *      bool isOperating() const
+ *      bool isAccepted() const
+ *      bool isRejected() const
+ *  module:
+ *      turingmachine
+ *  files:
+ *      turingmachine.hpp
+ *      turingmachine.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "turingmachine.hpp"
 #include "tape.hpp"
 #include "inputalphabet.hpp"

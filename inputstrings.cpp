@@ -1,3 +1,38 @@
+/*  description:
+ *      The class InputStrings contains a string vector that holds a list
+ *      of input strings available for the Turing machine to operate on.
+ *      If an input string file exists prior to running the Turing machine,
+ *      its contents are loaded into the vector, but it is also valid to run
+ *      the program without a pre-existing input string file. If any strings are
+ *      added to or removed from the input string vector, the contents are
+ *      written to the input string file when the program exits.
+ *  functions:
+ *      InputStrings(string strfile)
+ *      void load(ifstream& str)
+ *      void view() const
+ *      int size() const
+ *      void insert(string value)
+ *      void del(int index)
+ *      string element(int index) const
+ *      bool isElement(string value) const
+ *      bool isModified() const
+ *  module:
+ *      inputstrings
+ *  file:
+ *      inputstrings.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "inputstrings.hpp"
 #include "inputalphabet.hpp"
 #include <string>

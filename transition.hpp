@@ -15,7 +15,7 @@ class Transition
         Direction move;
     public:
         Transition(string sourceState, char readChar, string destinationState, 
-                char writeChar, Direction moveDirection);
+                char writeChar, Direction moveDir);
         string sourceState() const;
         char readChar() const;
         string destState() const;

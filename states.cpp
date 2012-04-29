@@ -1,3 +1,28 @@
+/*  description:
+ *      The class States contains a string vector.  Each string in the string
+ *      vector identifies a state that the Turing machine can enter.
+ *  functions:
+ *      void load(ifstream& definition, bool& valid)
+ *      void view() const
+ *      bool isElement(string value) const
+ *  module:
+ *      states
+ *  files:
+ *      states.hpp
+ *      states.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "states.hpp"
 #include "utilities.hpp"
 #include <string>

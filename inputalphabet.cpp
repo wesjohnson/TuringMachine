@@ -1,3 +1,31 @@
+/*  description:
+ *      The input alphabet contains a vector that holds all of the characters
+ *      that can be in a valid input string.  If a string contains a character
+ *      not in the input alphabet, the entire string is invalid.
+ *  functions:
+ *      void load(ifstream& definition, bool& valid)
+ *      void view() const
+ *      int size() const
+ *      char element(int index) const
+ *      bool isElement(char value) const
+ *  module:
+ *      inputalphabet
+ *  files:
+ *      inputalphabet.hpp
+ *      inputalphabet.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "inputalphabet.hpp"
 #include "utilities.hpp"
 #include <vector>

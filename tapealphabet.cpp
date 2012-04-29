@@ -1,3 +1,30 @@
+/*  description:
+ *      The tape alphabet contains a vector that holds all of the characters
+ *      that can be written to or read from the Turing machine tape. It must,
+ *      at a minimum, contain all of the characters in the input alphabet.
+ *      Frequently though it includes other necessary characters.
+ *  functions:
+ *      void load(ifstream& definition, bool& valid)
+ *      void view() const
+ *      bool isElement(char value) const
+ *  module:
+ *      tapealphabet
+ *  files:
+ *      tapealphabet.hpp
+ *      tapealphabet.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "tapealphabet.hpp"
 #include "utilities.hpp"
 #include <string>

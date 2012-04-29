@@ -1,3 +1,41 @@
+/*  description:
+ *      A transition function defines the behavior of a Turing machine on
+ *      an input string. The TransitionFunction class is composed of any
+ *      number of individual transitions. In a non deterministic Turing machine,
+ *      there can be multiple transitions defined for particular source state
+ *      and read character.  This program emulates a deterministic Turing.
+ *      It is only valid for there to be a single transition defined for a
+ *      particular source state and read character.
+ *  functions:
+ *      void load(ifstream& definition, bool& valid)
+ *      void view() const
+ *      int size() const
+ *      string sourceState(int index) const
+ *      char readChar(int index) const
+ *      string destState(int index) const
+ *      char writeChar(int index) const
+ *      bool isDefintedTransition(string sourceState, char readChar,
+ *          string& destinationState, char& writeChar,
+ *          Direction& moveDirection) const
+ *      bool isSourceState(string state) const
+ *  module:
+ *      transitionfunction
+ *  files:
+ *      transitionfunction.hpp
+ *      transitionfunction.cpp
+ *  language:
+ *      C++
+ *  computer:
+ *      lab computers in West 151
+ *  operating system:
+ *      Ubuntu 10.04 LTS
+ *  course:
+ *      CPT S 322 -- Software Engineering
+ *  author:
+ *      Wes Johnson
+ *  date:
+ *      04/28/2012
+ */
 #include "transitionfunction.hpp"
 #include "transition.hpp"
 #include "direction.hpp"
