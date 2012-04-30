@@ -50,29 +50,25 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
-
-TuringMachine::TuringMachine():
-    valid(true),
-    used(false),
-    invalid(false),
-    operating(false),
-    accepted(false),
-    rejected(false)
-{}
 
 TuringMachine::TuringMachine(string definitionFile)
 {
     numTransitions = 0;
     valid = true;
     used = false;
-    invalid = false;
     operating = false;
     accepted = false;
     rejected = false;
 
     ifstream definition((definitionFile + ".def").c_str());
+    if(!definition)
+    {
+        cout << "Error: no definition file found" << endl;
+        exit(-1);
+    }
 
     string value;
     
@@ -212,7 +208,9 @@ void TuringMachine::performTransitions(int maxTransitions)
             if(finalStates.isElement(destState))
             {
                 accepted = true;
-                cout << "The input string was accepted" << endl;
+                cout << "The input string " << originalInputString 
+                     << " was accepted in " << numTransitions  << " transitions" 
+                     << endl;
                 operating = false;
                 return;
             }
@@ -220,7 +218,9 @@ void TuringMachine::performTransitions(int maxTransitions)
         else
         {
             rejected = true;
-            cout << "The input string was rejected" << endl;
+            cout << "The input string " << originalInputString
+                 << " was rejected in " << numTransitions << " transitions"
+                 << endl;
             operating = false;
             return;
         }
@@ -249,6 +249,8 @@ bool TuringMachine::isValid() const
 
 bool TuringMachine::isValidInputString(string value) const
 {
+    if((value.size() == 1) && (value[0] == '\\'))
+        return true;
     for(int i = 0; i < value.size(); i++)
     {
         if(!(inputAlphabet.isElement(value[i])))

@@ -27,13 +27,11 @@ class TuringMachine
         int numTransitions;
         bool valid;
         bool used;
-        bool invalid;
         bool operating;
         bool accepted;
         bool rejected;
 
     public:
-        TuringMachine();
         TuringMachine(string definitionFile);
         void viewDefinition() const;
         void viewInstantaneousDescription(int maxCells) const;

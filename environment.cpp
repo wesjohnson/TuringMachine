@@ -5,17 +5,17 @@
  *  functions:
  *      Environment(string name)
  *      void spawn()
- *      void help()
- *      void show()
- *      void view()
- *      void list()
- *      void insert()
  *      void del()
- *      void set()
- *      void truncate()
- *      void run()
- *      void quit()
  *      void exitApp();
+ *      void help()
+ *      void insert()
+ *      void list()
+ *      void quit()
+ *      void run()
+ *      void set()
+ *      void show()
+ *      void truncate()
+ *      void view()
  *  module:
  *      environment
  *  files:
@@ -38,18 +38,19 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <algorithm>
 using namespace std;
 
 Environment::Environment(string name):
     tmName(name),
     tm(name),
-    //inputStrings(name),
     progRunning(true),
     toggleHelp(false),
     command(""),
     maxTransitions(1),
     maxCells(32)
 {
+    cout << "Turing machine " << tmName << " loaded" << endl;
     ifstream str((name + ".str").c_str());
     if(str)
     {
@@ -59,7 +60,10 @@ Environment::Environment(string name):
             if(tm.isValidInputString(value))
                 inputStrings.load(value);
             else
+            {
+                cout << "invalid input string has been discarded" << endl;
                 inputStrings.setModified(true);
+            }
         }
     }
     str.close();
@@ -73,6 +77,8 @@ void Environment::spawn()
     {
         cout << "command: ";
         getline(cin, command);
+        command.erase(remove_if(command.begin(), command.end(), ::isspace), 
+                command.end());
         if ((command == "D") || (command == "d"))
             del();
         else if ((command == "X") || (command == "x"))
@@ -114,11 +120,14 @@ void Environment::del()
     int index;
     cout << "index: ";
     getline(cin, str);
-    index = atoi(str.c_str());
-    if(index > inputStrings.size())
-        cout << "Not a valid input string index" << endl;
-    else
-        inputStrings.del((index - 1));
+    if(str.size() > 0)
+    {
+        index = atoi(str.c_str());
+        if((index > inputStrings.size()) || (index < 0))
+            cout << "Not a valid input string index" << endl;
+        else
+           inputStrings.del((index - 1));
+    }
 }
 
 void Environment::exitApp()
@@ -175,12 +184,15 @@ void Environment::insert()
     string value;
     cout << "input string: ";
     getline(cin, value);
-    if(inputStrings.isElement(value))
-        cout << "This string is already in the input string list" << endl;
-    else if(tm.isValidInputString(value))
-        inputStrings.insert(value);
-    else
-        cout << "String contains invalid characters" << endl;
+    if(value.size() > 0)
+    {
+        if(inputStrings.isElement(value))
+            cout << "This string is already in the input string list" << endl;
+        else if(tm.isValidInputString(value))
+            inputStrings.insert(value);
+        else
+           cout << "String contains invalid characters" << endl;
+    }
 }
 
 void Environment::list()
@@ -188,10 +200,11 @@ void Environment::list()
     if (toggleHelp)
     {
         cout << "\nDisplays a list of all input strings available for the\n"
-             << "Turing machine to run on.\n"
-             << endl;
+             << "Turing machine to run on.";
     }
+    cout << endl;
     inputStrings.view();
+    cout << endl;
 }
 
 void Environment::quit()
@@ -207,10 +220,14 @@ void Environment::quit()
              << endl;
     }
     if (tm.isOperating())
+    {
         tm.terminateOperation();
+        cout << "Operation was terminated after " << tm.totalTransitions()
+             << " transitions" << endl;
+    }
     else
     {
-        cout << "The Turing machine is not running and cannot be quit.\n"
+        cout << "The Turing machine is not running and cannot be quit."
              << endl;
     }
 }
@@ -233,11 +250,23 @@ void Environment::run()
         cout << "index of input string: ";
         getline(cin, str);
         index = atoi(str.c_str());
-        tm.initialize(inputStrings.element(index - 1));
+        if(index <= inputStrings.size())
+        {
+            tm.initialize(inputStrings.element(index - 1));
+            tm.viewInstantaneousDescription(maxCells);
+            tm.performTransitions(maxTransitions);
+            tm.viewInstantaneousDescription(maxCells);
+        }
+        else
+        {
+            cout << "error: invalid input string selected" << endl;
+        }
+    }
+    else
+    {
+        tm.performTransitions(maxTransitions);
         tm.viewInstantaneousDescription(maxCells);
     }
-    tm.performTransitions(maxTransitions);
-    tm.viewInstantaneousDescription(maxCells);
 }
 
 void Environment::set()
@@ -253,13 +282,13 @@ void Environment::set()
     }
     string str;
     int limit;
-    cout << "Maximum number of transitions: ";
+    cout << "Maximum number of transitions[" << maxTransitions << "]: ";
     getline(cin, str);
     limit = atoi(str.c_str());
     if(limit > 0)
         maxTransitions = limit;
     else
-        cout << "error: invalid setting\n" << endl;
+        cout << "error: invalid setting" << endl;
 }
 
 void Environment::show()
@@ -303,6 +332,7 @@ void Environment::show()
         cout << "    Total transitions performed: " << tm.totalTransitions() 
              << endl;
     }
+    cout << endl;
 }
 
 void Environment::truncate()
@@ -318,13 +348,13 @@ void Environment::truncate()
     }
     string str;
     int limit;
-    cout << "Maximum number of cells: ";
+    cout << "Maximum number of cells[" << maxCells << "]: ";
     getline(cin, str);
     limit = atoi(str.c_str());
     if(limit > 0)
         maxCells = limit;
     else
-        cout << "error: invalid setting\n" << endl;
+        cout << "error: invalid setting" << endl;
 }
 
 void Environment::view()
@@ -336,4 +366,5 @@ void Environment::view()
              << endl;
     }
     tm.viewDefinition();
+    cout << endl;
 }

@@ -18,20 +18,19 @@ class Environment
         int maxCells;
         InputStrings inputStrings;
     public:
-        //Environment();
         Environment(string name);
         void spawn();
-        void help();
-        void show();
-        void view();
-        void list();
-        void insert();
         void del();
-        void set();
-        void truncate();
-        void run();
-        void quit();
         void exitApp();
+        void help();
+        void insert();
+        void list();
+        void quit();
+        void run();
+        void set();
+        void show();
+        void truncate();
+        void view();
 };
 
 #endif

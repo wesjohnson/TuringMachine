@@ -41,12 +41,17 @@ void Tape::view() const
 
 void Tape::initialize(string inputString)
 {
-    cells = inputString + blank;
+    if((inputString.size() == 1) && (inputString[0] == '\\'))
+        cells = blank + blank;
+    else
+        cells = inputString + blank;
     currentCell = 0;
 }
 
 void Tape::update(char writeChar, Direction moveDir)
 {
+    if ( ((moveDir == 'L') || (moveDir == 'l')) && currentCell == 0 )
+        return;
     cells[currentCell] = writeChar;
     if (moveDir == 'L')
         --currentCell;
@@ -67,7 +72,7 @@ string Tape::left(int maxCells) const
         else
             left = "";
     else
-        left = "<<" + cells.substr((currentCell - maxCells), currentCell);
+        left = "<" + cells.substr((currentCell - maxCells), currentCell);
     return left;
 }
 
@@ -77,7 +82,7 @@ string Tape::right(int maxCells) const
     if((currentCell + maxCells) > cells.size())
         right = cells.substr(currentCell, maxCells);
     else
-        right = cells.substr(currentCell, maxCells) + ">>";
+        right = cells.substr(currentCell, maxCells) + ">";
     return right;
 }
 
