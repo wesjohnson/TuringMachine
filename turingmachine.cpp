@@ -54,6 +54,10 @@
 
 using namespace std;
 
+/*  name: TuringMachine(string definitionFile)
+ *  purpose: class constructor. call the load functions for all component
+ *           classes, handle some error checking
+ */
 TuringMachine::TuringMachine(string definitionFile)
 {
     numTransitions = 0;
@@ -149,6 +153,11 @@ TuringMachine::TuringMachine(string definitionFile)
     }
 }
 
+/*  name: viewDefinition()
+ *  purpose: print the description and formal definition of the loaded
+ *           Turing machine. call the view() methods for component classes
+ *           and provide pretty formatting
+ */
 void TuringMachine::viewDefinition() const
 {
     cout << "Description:" << endl;
@@ -172,6 +181,11 @@ void TuringMachine::viewDefinition() const
     cout << " }\n    )" << endl;
 }
 
+/*  name: viewInstantaneousDescription(int maxCells)
+ *  purpose: print a maximum of maxCells to left and right of current
+ *           cell of the tape. shows you what the tape looks like when
+ *           it is running
+ */
 void TuringMachine::viewInstantaneousDescription(int maxCells) const
 {
     cout << tape.left(maxCells);
@@ -179,6 +193,10 @@ void TuringMachine::viewInstantaneousDescription(int maxCells) const
     cout << tape.right(maxCells) << endl;
 }
 
+/*  name: initialize(string inputString)
+ *  purpose: call the initialize(string inputString) functions of component
+ *           classes
+ */
 void TuringMachine::initialize(string inputString)
 {
     originalInputString = inputString;
@@ -191,6 +209,11 @@ void TuringMachine::initialize(string inputString)
     rejected = false;
 }
 
+/*  name: performTransitions(int maxTransitions)
+ *  purpose: perform up to maxTransitions number of transitions. if a final
+ *           state is reached, stop performing transitions. reject input
+ *           string if the Turing machine crashes
+ */
 void TuringMachine::performTransitions(int maxTransitions)
 {
     string destState;
@@ -227,26 +250,43 @@ void TuringMachine::performTransitions(int maxTransitions)
     }
 }
 
+/*  name: terminateOperation()
+ *  purpose: stop the Turing machine from operating further on an input
+ *           string
+ */
 void TuringMachine::terminateOperation()
 {
     operating = false;
 }
 
+/*  name: inputString()
+ *  purpose: return the original input string, used for Show command
+ */
 string TuringMachine::inputString() const
 {
     return originalInputString;
 }
 
+/*  name: totalTransitions()
+ *  purpose: return the total transitions performed on the current input string
+ */
 int TuringMachine::totalTransitions() const
 {
     return numTransitions;
 }
 
+/*  name: isValid()
+ *  purpose: return the attribute valid
+ */
 bool TuringMachine::isValid() const
 {
     return valid;
 }
 
+/*  name: isValidInputString(string value)
+ *  purpose: check to if every character is either in the input alphabet
+ *           or if the string is equl to \ (blank character)
+ */
 bool TuringMachine::isValidInputString(string value) const
 {
     if((value.size() == 1) && (value[0] == '\\'))
@@ -259,21 +299,33 @@ bool TuringMachine::isValidInputString(string value) const
     return true;
 }
 
+/*  name: isUsed()
+ *  purpose: return the attribute used
+ */
 bool TuringMachine::isUsed() const
 {
     return used;
 }
 
+/*  name: isOperating()
+ *  purpose: return the attribute operating
+ */
 bool TuringMachine::isOperating() const
 {
     return operating;
 }
 
+/*  name: isAccepted()
+ *  purpose: return the attribute accepted
+ */
 bool TuringMachine::isAccepted() const
 {
     return accepted;
 }
 
+/*  name: isRejected()
+ *  purpose: return the attribute rejected
+ */
 bool TuringMachine::isRejected() const
 {
     return rejected;

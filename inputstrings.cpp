@@ -40,36 +40,26 @@
 #include <vector>
 #include <fstream>
 using namespace std;
-/*
-InputStrings::InputStrings(string strfile)
-{
-    ifstream str((strfile + ".str").c_str());
-    if(str)
-        load(str);
-    str.close();
-}
-*/
 
+/*  name: InputStrings()
+ *  purpose: default constructor
+ */
 InputStrings::InputStrings():
     modified(false)
 {}
 
+/*  name: load(string value)
+ *  purpose: insert the given string into the input string list without
+ *           changing the modified attribute to true
+ */
 void InputStrings::load(string value)
 {
     strings.push_back(value);
 }
-/*
-void InputStrings::load(ifstream& str)
-{
-    string value;
-    while (str >> value)
-    {
-        if(isValidInputString)
-            strings.push_back(value);
-    }
-}
-*/
 
+/*  name: view()
+ *  purpose: print the list of input strings with indices starting at 1
+ */
 void InputStrings::view() const
 {
     cout << "Input Strings:" << endl;
@@ -79,33 +69,52 @@ void InputStrings::view() const
     }
 }
 
+/*  name: size()
+ *  purpose: return the number of input strings
+ */
 int InputStrings::size() const
 {
     return strings.size();
 }
 
+/*  name: insert(string value)
+ *  purpose: insert a new string into the list, mark list as modified
+ */
 void InputStrings::insert(string value)
 {
     strings.push_back(value);
     modified = true;
 }
 
+/*  name: setModified(bool value)
+ *  purpose: change the attribute modified to the given value
+ */
 void InputStrings::setModified(bool value)
 {
     modified = value;
 }
 
+/*  name: del(int index)
+ *  purpose: remove the input string at the given index from the list,
+ *           mark list as modified
+ */
 void InputStrings::del(int index)
 {
     strings.erase(strings.begin() + index);
     modified = true;
 }
 
+/*  name: element(int index)
+ *  purpose: return the input string at the given index
+ */
 string InputStrings::element(int index) const
 {
     return(strings[index]);
 }
 
+/*  name: isElement(string value)
+ *  purpose: return true if the given string is already in the list
+ */
 bool InputStrings::isElement(string value) const
 {
     for(int i = 0; i < strings.size(); i++)
@@ -115,18 +124,10 @@ bool InputStrings::isElement(string value) const
     }
     return false;
 }
-/*
-bool InputStrings::isValidInputString(string value) const
-{
-    for(int i = 0; i < value.size(); i++)
-    {
-        if(!(inputAlphabet.isElement(value[i])))
-            return false;
-    }
-    return true;
-}
-*/
 
+/*  name: isModified()
+ *  purpose: return the value of the attribute modified
+ */
 bool InputStrings::isModified() const
 {
     return modified;

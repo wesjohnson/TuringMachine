@@ -7,12 +7,18 @@
 #include <algorithm>
 using namespace std;
 
+/*  name: Tape()
+ *  purpose: default constructor
+ */
 Tape::Tape():
     cells(" "),
     currentCell(0),
     blank(' ')
 {}
 
+/*  name: load(ifstream& definition, bool& valid)
+ *  purpose: parse the definition file, set the blank character
+ */
 void Tape::load(ifstream& definition, bool& valid)
 {
     string value;
@@ -34,11 +40,17 @@ void Tape::load(ifstream& definition, bool& valid)
     }
 }
 
+/*  name: view()
+ *  purpose: print the blank character to the screen
+ */
 void Tape::view() const
 {
     cout << blank;
 }
 
+/*  name: initialize(string inputString)
+ *  purpose: set the attribute cells to the inputString or to blank
+ */
 void Tape::initialize(string inputString)
 {
     if((inputString.size() == 1) && (inputString[0] == '\\'))
@@ -48,6 +60,10 @@ void Tape::initialize(string inputString)
     currentCell = 0;
 }
 
+/*  name: update(char writeChar, Direction moveDir)
+ *  purpose: update the current cell with a new character, increment
+ *           the current cell
+ */
 void Tape::update(char writeChar, Direction moveDir)
 {
     if ( ((moveDir == 'L') || (moveDir == 'l')) && currentCell == 0 )
@@ -63,6 +79,11 @@ void Tape::update(char writeChar, Direction moveDir)
     }
 }
 
+/*  name: left(int maxCells)
+ *  purpose: return a string of up to maxCells, contents are the characters
+ *           of the tape to the left of the current cell. truncate if there 
+ *           are more characters than maxCells
+ */
 string Tape::left(int maxCells) const
 {
     string left;
@@ -76,6 +97,11 @@ string Tape::left(int maxCells) const
     return left;
 }
 
+/*  name: right(int maxCells)
+ *  purpose: return a string of up to maxCells, contents are the characters
+ *           of the tape including and to the right of the current cell. 
+ *           truncate if there are more characters than maxCells
+ */
 string Tape::right(int maxCells) const
 {
     string right;
@@ -86,16 +112,25 @@ string Tape::right(int maxCells) const
     return right;
 }
 
+/*  name: currentChar()
+ *  purpose: return the character at the current cell
+ */
 char Tape::currentChar() const
 {
     return cells[currentCell];
 }
 
+/*  name: blankChar()
+ *  purpose: return the blank character
+ */
 char Tape::blankChar() const
 {
     return blank;
 }
 
+/*  name: isFirstCell()
+ *  purpose: return true if the current cell is the first one
+ */
 bool Tape::isFirstCell() const
 {
     if(currentCell == 0)

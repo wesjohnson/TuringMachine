@@ -30,6 +30,9 @@
 #include <iostream>
 #include <fstream>
 
+/*  name: load(ifstream& definition, bool& valid)
+ *  purpose: parse the definition file, load the states
+ */
 void States::load(ifstream& definition, bool& valid)
 {
     string value;
@@ -58,6 +61,9 @@ void States::load(ifstream& definition, bool& valid)
     }
 }
 
+/*  name: view()
+ *  purpose: print the states to the screen
+ */
 void States::view() const
 {
     for(int i = 0; i < names.size(); i++)
@@ -66,6 +72,9 @@ void States::view() const
     }
 }
 
+/*  name: isElement(string value)
+ *  purpose: determine if the given string is a state
+ */
 bool States::isElement(string value) const
 {
     for(int i = 0; i < names.size(); i++)

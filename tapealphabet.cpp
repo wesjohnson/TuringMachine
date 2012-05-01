@@ -30,6 +30,9 @@
 #include <string>
 #include <vector>
 
+/*  name: load(ifstream& definition, bool& valid)
+ *  purpose: parse the definition file, load the tape alphabet
+ */
 void TapeAlphabet::load(ifstream& definition, bool& valid)
 {
     string value;
@@ -48,12 +51,18 @@ void TapeAlphabet::load(ifstream& definition, bool& valid)
     }
 }
 
+/*  name: view()
+ *  purpose: print the tape alphabet to the screen
+ */
 void TapeAlphabet::view() const
 {
     for(int i = 0; i < alphabet.size(); i++)
         cout << alphabet[i] << ", ";
 }
 
+/*  name: isElement(char value)
+ *  purpose: determine if the given character is a member of the tape alphabet
+ */
 bool TapeAlphabet::isElement(char value) const
 {
     for(int i = 0; i < alphabet.size(); i++)

@@ -33,6 +33,9 @@
 #include <vector>
 #include <fstream>
 
+/*  name: load(ifstream& definition, bool& valid)
+ *  purpose: parse through the final states in the definition file
+ */
 void FinalStates::load(ifstream& definition, bool& valid)
 {
     string value;
@@ -42,22 +45,34 @@ void FinalStates::load(ifstream& definition, bool& valid)
     }
 }
 
+/*  name: view()
+ *  print the final states to the screen
+ */
 void FinalStates::view() const
 {
     for(int i = 0; i < names.size(); i++)
         cout << names[i] << ", ";
 }
 
+/*  name: size()
+ *  return the number of final states
+ */
 int FinalStates::size() const
 {
     return names.size();
 }
 
+/*  name: element(int index)
+ *  purpose: return the state at the given index
+ */
 string FinalStates::element(int index) const
 {
     return names[index];
 }
 
+/*  name: isElement(string value)
+ *  purpose: determin if the given string is a final state
+ */
 bool FinalStates::isElement(string value) const
 {
     for(int i = 0; i < names.size(); i++)

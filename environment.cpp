@@ -41,6 +41,9 @@
 #include <algorithm>
 using namespace std;
 
+/*  name: Environment(string name)
+ *  purpose: Class constructor
+ */
 Environment::Environment(string name):
     tmName(name),
     tm(name),
@@ -69,6 +72,9 @@ Environment::Environment(string name):
     str.close();
 }
 
+/*  name: spawn()
+ *  purpose: continually prompt user for input
+ */ 
 void Environment::spawn()
 {
     if(!tm.isValid())
@@ -108,6 +114,9 @@ void Environment::spawn()
     }
 }
 
+/*  name: del()
+ *  purpose: delete an input string from the list
+ */
 void Environment::del()
 {
     if (toggleHelp)
@@ -130,6 +139,10 @@ void Environment::del()
     }
 }
 
+/*  name: exitApp()
+ *  purpose: write the input string list to a file if it has been modified,
+ *           exit the application
+ */ 
 void Environment::exitApp()
 {
     if(inputStrings.isModified())
@@ -146,6 +159,9 @@ void Environment::exitApp()
     progRunning = false;
 }
 
+/*  name: help()
+ *  purpose: toggle the display of help messages
+ */
 void Environment::help()
 {
     if (toggleHelp)
@@ -170,6 +186,9 @@ void Environment::help()
     }
 }
 
+/*  name: insert()
+ *  purpose: insert a new string into the input string list
+ */
 void Environment::insert()
 {
     if (toggleHelp)
@@ -195,6 +214,9 @@ void Environment::insert()
     }
 }
 
+/*  name: list()
+ *  purpose: print the contents of the input string list to the screen
+ */
 void Environment::list()
 {
     if (toggleHelp)
@@ -207,6 +229,9 @@ void Environment::list()
     cout << endl;
 }
 
+/*  name: quit()
+ *  purpose: if the Turing machine is operating on a string, halt operation
+ */
 void Environment::quit()
 {
     if (toggleHelp)
@@ -232,6 +257,10 @@ void Environment::quit()
     }
 }
 
+/*  name: run()
+ *  purpose: perform maxTransitions number of transitions, initialize with
+ *           a new input string if Turing machine is not already running
+ */
 void Environment::run()
 {
     if (toggleHelp)
@@ -269,6 +298,9 @@ void Environment::run()
     }
 }
 
+/*  name: set()
+ *  purpose: set the maximum number of transitions to perform
+ */
 void Environment::set()
 {
     if (toggleHelp)
@@ -291,6 +323,9 @@ void Environment::set()
         cout << "error: invalid setting" << endl;
 }
 
+/*  name: show()
+ *  purpose: print useful information about the Turing machine and its status
+ */
 void Environment::show()
 {
     if (toggleHelp)
@@ -335,6 +370,10 @@ void Environment::show()
     cout << endl;
 }
 
+/*  name: truncate()
+ *  purpose: set the number of cells to display during an instantaneous
+ *           description
+ */ 
 void Environment::truncate()
 {
     if (toggleHelp)
@@ -357,6 +396,9 @@ void Environment::truncate()
         cout << "error: invalid setting" << endl;
 }
 
+/*  name: view()
+ *  purpose: print the description and formal definition of the Turing machine
+ */
 void Environment::view()
 {
     if (toggleHelp)

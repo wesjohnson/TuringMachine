@@ -2,6 +2,9 @@
 #include <string>
 using namespace std;
 
+/*  name: upperCase(string value)
+ *  purpose: return a string with the same letters except all upper case
+ */
 string Utilities::upperCase(string value)
 {
     string capitals = value;

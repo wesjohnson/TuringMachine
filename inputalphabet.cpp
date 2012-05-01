@@ -32,6 +32,9 @@
 #include <iostream>
 using namespace std;
 
+/*  name: load(ifstream& definition, bool& valid)
+ *  purpose: parse through the definition file and store the blank character
+ */
 void InputAlphabet::load(ifstream& definition, bool& valid)
 {
     string value;
@@ -49,6 +52,9 @@ void InputAlphabet::load(ifstream& definition, bool& valid)
     }
 }
 
+/*  name: view()
+ *  purpose: print the input alphabet to the screen
+ */ 
 void InputAlphabet::view() const
 {
     for(int i = 0; i < alphabet.size(); i++)
@@ -57,16 +63,25 @@ void InputAlphabet::view() const
     }
 }
 
+/*  name: size()
+ *  purpose: return the number of characters in the input alphabet
+ */
 int InputAlphabet::size() const
 {
     return alphabet.size();
 }
 
+/*  name: element(int index)
+ *  purpose: return the character in the input alphabet at the given index
+ */
 char InputAlphabet::element(int index) const
 {
     return alphabet[index];
 }
 
+/*  name: isElement(char value)
+ *  purpose: check if the given character is an element of the input alphabet
+ */
 bool InputAlphabet::isElement(char value) const
 {
     for(int i = 0; i < alphabet.size(); i++)

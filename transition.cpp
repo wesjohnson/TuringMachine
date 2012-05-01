@@ -33,35 +33,54 @@
 #include <string>
 using namespace std;
 
-Transition::Transition(string sourceState, char readChar, string 
-        destinationState, char writeChar, Direction moveDir):
+/*  name: Transition(string sourceState, char readChar, string destState,
+ *                   char writeChar, Direction moveDir)
+ *  purpose: class constructor, initialize data members
+ */
+Transition::Transition(string sourceState, char readChar, string destState, 
+        char writeChar, Direction moveDir):
     source(sourceState),
     read(readChar),
-    destination(destinationState),
+    destination(destState),
     write(writeChar),
     move(moveDir)
 {}
 
+/*  name: sourceState()
+ *  purpose: return the attribute sourceState
+ */
 string Transition::sourceState() const
 {
     return source;
 }
 
+/*  name: readChar()
+ *  purpose: return the attribute read
+ */
 char Transition::readChar() const
 {
     return read;
 }
 
+/*  name: destState()
+ *  purpose: return the attribute destination
+ */
 string Transition::destState() const
 {
     return destination;
 }
 
+/*  name: writeChar()
+ *  purpose: return the attribute write
+ */
 char Transition::writeChar() const
 {
     return write;
 }
 
+/*  name: moveDir()
+ *  purpose: return the attribute move
+ */
 Direction Transition::moveDir() const
 {
     return move;

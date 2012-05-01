@@ -46,6 +46,10 @@
 #include <fstream>
 using namespace std;
 
+/*  name: load(ifstream& definition, bool& valid)
+ *  purpose: parse the definition file, load the transitions into the
+ *           transition function
+ */
 void TransitionFunction::load(ifstream& definition, bool& valid)
 {
     string sourceState;
@@ -89,6 +93,9 @@ void TransitionFunction::load(ifstream& definition, bool& valid)
     }
 }
 
+/*  name: view()
+ *  purpose: print the transitions to the screen, one per line
+ */
 void TransitionFunction::view() const
 {
     cout << "( " <<transitions.front().sourceState() << ", " 
@@ -112,48 +119,74 @@ void TransitionFunction::view() const
          << transitions.back().moveDir() << " ) ";
 }
 
+/*  name: size()
+ *  purpose: return the number of transitions
+ */
 int TransitionFunction::size() const
 {
     return transitions.size();
 }
 
+/*  name: sourceState(int index)
+ *  purpose: return the source state of a specific transition
+ */
 string TransitionFunction::sourceState(int index) const
 {
     return transitions[index].sourceState();
 }
 
+/*  name: readChar(int index)
+ *  purpose: return the read character of a specific transition
+ */
 char TransitionFunction::readChar(int index) const
 {
     return transitions[index].readChar();
 }
 
+/*  name: destState(int index)
+ *  purpose: return the destination state of a specific transition
+ */
 string TransitionFunction::destState(int index) const
 {
     return transitions[index].destState();
 }
 
+/*  name: writeChar(int index)
+ *  purpose: return the write character of a specific transition
+ */
 char TransitionFunction::writeChar(int index) const
 {
     return transitions[index].writeChar();
 }
 
+/*  name: isDefinedTransition(string sourceState, char readChar,
+ *                            string& destState, char& writeChar,
+ *                            Direction& moveDir)
+ *  purpose: return false if there is no transition for the specified read
+ *           character and source state. return true and set the output
+ *           parameters to the correct values if there is a matching transition
+ */
 bool TransitionFunction::isDefinedTransition(string sourceState, char readChar, 
-        string& destinationState, char& writeChar, 
-        Direction& moveDirection) const
+        string& destState, char& writeChar, 
+        Direction& moveDir) const
 {
     for (int i = 0; i < transitions.size(); i++)
     {
         if ((transitions[i].sourceState() == sourceState) &&
                 (transitions[i].readChar() == readChar))
         {
-            destinationState = transitions[i].destState();
+            destState = transitions[i].destState();
             writeChar = transitions[i].writeChar();
-            moveDirection = transitions[i].moveDir();
+            moveDir = transitions[i].moveDir();
             return true;
         }
     }
     return false;
 }
+
+/*  name: isSourceState(string state)
+ *  purpose: forgot to implement, i don't use it
+ */
 bool TransitionFunction::isSourceState(string state) const
 {
     return false;

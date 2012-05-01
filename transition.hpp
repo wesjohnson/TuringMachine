@@ -14,7 +14,7 @@ class Transition
         char write;
         Direction move;
     public:
-        Transition(string sourceState, char readChar, string destinationState, 
+        Transition(string sourceState, char readChar, string destState, 
                 char writeChar, Direction moveDir);
         string sourceState() const;
         char readChar() const;

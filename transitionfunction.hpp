@@ -21,8 +21,8 @@ class TransitionFunction
         string destState(int index) const;
         char writeChar(int index) const;
         bool isDefinedTransition(string sourceState, char readChar, 
-                string& destinationState, char& writeChar, 
-                Direction& moveDirection) const;
+                string& destState, char& writeChar, 
+                Direction& moveDir) const;
         bool isSourceState(string state) const;
 };
 
